@@ -1,0 +1,28 @@
+{% if posts %}
+  <ul>
+    {% for post in posts %}
+      <li><a href="/{{ post.generated_url }}">{{post.name}}</a></li>
+      <p>Content:</p>
+      <p>{{post.content|linebreaks}}</p>
+    {% endfor %}
+  </ul>
+
+  {% if posts.has_other_pages %}
+    {% if posts.has_previous %}
+      <a href="?page={{ posts.previous_page_number }}">&laquo; | </a>
+    {% endif %}
+    {% for i in posts.paginator.page_range %}
+      {% if posts.number == i %}
+        <span>{{ i }} |</span>
+      {% else %}
+        <a href="?page={{ i }}">{{ i }} | </a>
+      {% endif %}
+    {% endfor %}
+    {% if posts.has_next %}
+      <a href="?page={{ posts.next_page_number }}">&raquo;</a>
+    {% endif %}
+  {% endif %}
+
+{% else %}
+  <p>No matched results.</p>
+{% endif %}  

@@ -1,0 +1,18 @@
+<h1>Pastebin Clone</h1>
+
+<form action="{% url 'search' %}" method="get">
+    <label for="name">Search by name of post:</label><br>
+    <input id='name' type='text' name='name' maxlength='300' size='50'><br><br>
+    <input type="submit" value="Search" />
+</form>
+<hr>
+<br>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form action="{% url 'paste' %}" method="post">
+	{% csrf_token %}
+	<label for="name">Name of post:</label><br>
+    <input id='name' type='text' name='name' maxlength='300' size='70'><br><br>
+    <label for="content">Content of post:</label><br>
+    <textarea name='content' rows="10" cols="150"></textarea><br><br>
+	<input type="submit" value="Paste" />
+</form>

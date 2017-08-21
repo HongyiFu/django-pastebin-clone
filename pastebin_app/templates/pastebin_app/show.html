@@ -1,0 +1,10 @@
+<h1>Name of post: {{ post.name }}</h1>
+
+<p>Content of post:</p>
+
+<p>{{post.content|linebreaks}}</p>
+
+<form action="/{{post.generated_url}}/delete" method="post">
+	{% csrf_token %}
+	<input type="submit" name="delete" value="Delete" />
+</form>
